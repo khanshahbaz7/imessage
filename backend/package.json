@@ -11,7 +11,9 @@
   },
   "private": true,
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.js",
+    "build" : "rm -rf dist && cp -R src dist",
+    "start" : "bun src/index.js"
   },
   "type": "module"
 }
