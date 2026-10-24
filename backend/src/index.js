@@ -6,6 +6,7 @@ import {clerkMiddleware} from '@clerk/express'
 import { startKeepAlive } from './lib/cron.js';
 import fs from 'fs';
 import path from 'path';
+import clerkWebhook from './webhooks/clerk.webhook.js'
 
 
 const app = express();
