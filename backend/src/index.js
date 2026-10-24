@@ -18,9 +18,6 @@ app.use(cors({origin : FRONTEND_URL, credentials : true}))
 app.use(clerkMiddleware())
 
 app.get("/health", (_req, res) => res.json({ ok: true }));
-app.get("/", (req, res) => {
-    res.send("Hello World");
-});
 
 if(fs.existsSync(publicDir)){
     app.use(express.static(publicDir));
