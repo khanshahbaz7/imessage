@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config'
 import { connectDB } from './lib/db.js';
 import {clerkMiddleware} from '@clerk/express'
+import { startKeepAlive } from './lib/cron.js';
 import fs from 'fs';
 import path from 'path';
 
@@ -29,5 +30,10 @@ if(fs.existsSync(publicDir)){
 
 app.listen(PORT, () => {
     connectDB();
-    console.log("Server is listening on PORT:", PORT)
+    console.log("Server is listening on PORT:", PORT);
+
+    // In dev, FRONTEND_URL points at Vite, so only ping the deployed service.
+    if (process.env.NODE_ENV === "production") {
+        startKeepAlive();
+    }
 })
