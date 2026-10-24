@@ -13,10 +13,11 @@ const FRONTEND_URL=process.env.FRONTEND_URL;
 
 const publicDir = path.join(process.cwd(), "public");
 
-app.use(express.json)
+app.use(express.json())
 app.use(cors({origin : FRONTEND_URL, credentials : true}))
-app.use(clerkMiddleware)
+app.use(clerkMiddleware())
 
+app.get("/health", (_req, res) => res.json({ ok: true }));
 app.get("/", (req, res) => {
     res.send("Hello World");
 });
