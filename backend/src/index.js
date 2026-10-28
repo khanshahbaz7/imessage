@@ -18,7 +18,7 @@ const publicDir = path.join(process.cwd(), "public");
 
 app.use(express.json())
 app.use(cors({ origin: FRONTEND_URL, credentials: true }))
-app.use(clerkMiddleware());
+app.use(clerkMiddleware({ telemetry: { disabled: true } }));
 
 app.use("/api/webhooks/clerk", express.raw({ type: "application/json" }), clerkWebhook);
 app.use("/api/auth", authRoutes);
